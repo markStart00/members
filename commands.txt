@@ -1,0 +1,33 @@
+
+
+- - ef core - - - - - - - - - - - - -
+# initial ef command
+dotnet ef migrations add InitialCreate --project src\members.Database.Infrastructure --startup-project src\members.Api
+
+# apply migration
+dotnet ef database update --project src/members.Database.Infrastructure --startup-project src/members.Api
+
+
+- - dotnet - - - - - - - - - - - - -
+dotnet build
+dotnet clean
+dotnet restore # for nuget file
+
+
+
+- - SQLCMD - - - - - - - - - - - - -
+# connect to sql
+SQLCMD -S localhost\SQLEXPRESS -E
+
+# use membersDb
+use membersdb;
+go
+
+# list tables
+select name from sys.tables; 
+go
+
+
+- - pwsh Requests - - - - - - - - - - - - -
+Invoke-RestMethod -Uri "https://localhost:7106/all-members" -Method Get
+Invoke-RestMethod -Uri "https://localhost:7106/health" -Method Get
