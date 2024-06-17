@@ -1,7 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\members.Infrastructure\members.Infrastructure.csproj" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\members.Database.Domain\members.Database.Domain.csproj" />
+    <ProjectReference Include="..\members.Domain\members.Domain.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,0 +1,195 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (Mono auto generated)
+mono_crash.*
+
+# User-specific files (VS Code)
+.vscode/
+.vscode/*
+
+# User-specific files (VS Code)
+.history/
+
+# Auto generated files
+*.sln.ide
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#_PublishedWebsites/
+
+# Visual Studio specific files
+*.csproj.user
+*.csproj.FileListAbsolute.txt
+*.vcxproj.user
+*.pdb
+*.opendb
+*.vscode*
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+.vscode/*
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+.idea/*
+.idea/.idea/
+.idea/.idea/*
+
+# DotNet CLI
+.dotnet/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# StyleCop
+StyleCopReport.xml
+
+# Uncomment if you have refactored workspace with .repo and .sonarqube directories
+#.repo/
+#.sonarqube/
+
+# Paket dependency manager
+.paket/
+paket-files/
+
+# FAKE - F# Make
+.fake/
+
+# GhostDoc plugin setting file
+*.ghostdoc.xml
+
+# Auto-generated VS project files
+*.dbmdl
+*.jfm
+*.pdb
+
+# VS Coverage results
+*.coverage
+*.coveragexml
+
+# NCrunch
+*.ncrunch*
+_NCrunch_*
+.*crunch*
+
+# others
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Xamarin
+*.xamarin
+*.xamarin.xsd
+*.xaml.metalint
+*.xamlproj.user
+*.xamlproj.usewinrt
+
+# Workaround to make tools like JetBrains Rider to ignore temporary files
+.idea/
+.idea_modules/
+.idea_modules/
+.idea_modules/
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Migrations
+[Mm]igrations/
+
+# CMake
+CMakeLists.txt.user
+
+# MSTest test results
+TestResults/
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# Microsoft Azure
+*.azurePubxml
+
+# Application Insights
+ApplicationInsights.config
+ApplicationInsights.config
+ApplicationInsights.config
+
+# Local history
+.localhistory/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Local History
+.localhistory/
+
+# Rider
+.idea/
+
+# Package files
+*.nupkg
+*.snupkg
+*.nuspec
+*.psmdcp
+
+# LibMan
+libman.json
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/packages/
+.nuget/v3-cache/
+
+# Visual Studio 2019 (and later)
+.vs/
+

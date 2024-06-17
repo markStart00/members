@@ -23,6 +23,7 @@ namespace members.Database.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Member>(member =>
             {
                 member.HasKey(m => m.Id);
