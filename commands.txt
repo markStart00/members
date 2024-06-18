@@ -14,7 +14,6 @@ dotnet clean
 dotnet restore # for nuget file
 
 
-
 - - SQLCMD - - - - - - - - - - - - -
 # connect to sql
 SQLCMD -S localhost\SQLEXPRESS -E
@@ -30,4 +29,9 @@ go
 
 - - pwsh Requests - - - - - - - - - - - - -
 Invoke-RestMethod -Uri "https://localhost:7106/all-members" -Method Get
+
 Invoke-RestMethod -Uri "https://localhost:7106/health" -Method Get
+
+Invoke-RestMethod -Uri "https://localhost:7106/add-member" -Method Put -Headers @{ "Content-Type" = "application/json" } -Body (ConvertTo-Json @{ LastName = "LastName"; } )
+
+

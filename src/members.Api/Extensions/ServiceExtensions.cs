@@ -1,7 +1,10 @@
-﻿using members.Application.Interfaces;
+﻿using FluentValidation;
+using members.Application.Interfaces;
 using members.Application.Mappings;
 using members.Application.Services;
+using members.Application.Validators;
 using members.Database.Infrastructure.Persistence;
+using members.Domain.Requests;
 using members.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +17,8 @@ namespace members.Api.Extensions
 
             services.AddScoped<IMembersService, MembersService>();
             services.AddScoped<IMembersRepository, MembersRepository>();
+
+            services.AddScoped<IValidator<AddMemberRequest>, AddMemberRequestValidator>();
 
             services.AddAutoMapper(typeof(MappingProfile));
 

@@ -28,6 +28,7 @@ namespace members.Database.Infrastructure.Persistence
             {
                 member.HasKey(m => m.Id);
                 member.Property(m => m.LastName).IsRequired().HasMaxLength(100);
+                //member.HasIndex(e => e.LastName).IsUnique();
             });
 
         }

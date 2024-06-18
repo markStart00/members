@@ -192,5 +192,6 @@ libman.json
 
 # Visual Studio 2019 (and later)
 .vs/
+.vs/members/
 .vs\
 

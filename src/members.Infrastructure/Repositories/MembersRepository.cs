@@ -4,6 +4,9 @@ using members.Domain.Dtos;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using members.Domain.Requests;
+using members.Application.Exceptions;
+using members.Database.Domain.Entities;
 
 namespace members.Infrastructure.Repositories
 {
@@ -25,5 +28,30 @@ namespace members.Infrastructure.Repositories
             .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
             .ToListAsync();
         }
+
+        public async Task<MemberDto> SaveMemberAsync(AddMemberRequest request)
+        {
+            // check for uniqueness but need more fields than just lastname
+
+            //if (await _membersDbContext.Members.AnyAsync(m => m.LastName == request.LastName))
+            //{
+            //    throw new MemberExistsException();
+            //}
+
+            // the db generate id is updated in the Member model by ef when saveChangesAsync()
+            // there is no need to get the newly added memeber from the db
+
+            Member member = _mapper.Map<Member>(request);
+
+            _membersDbContext.Members.Add(member);
+
+            await _membersDbContext.SaveChangesAsync();
+
+            MemberDto memberDto = _mapper.Map<MemberDto>(member);
+
+            return memberDto;
+
+        }
+
     }
 }

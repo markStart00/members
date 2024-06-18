@@ -1,5 +1,7 @@
-﻿using members.Application.Interfaces;
+﻿using members.Application.Extensions;
+using members.Application.Interfaces;
 using members.Domain.Dtos;
+using members.Domain.Requests;
 
 namespace members.Application.Services
 {
@@ -15,6 +17,14 @@ namespace members.Application.Services
         public async Task<IEnumerable<MemberDto>> GetAllMembersAsync()
         {
             return await _membersRepository.GetAllMembersAsync();
+        }
+
+        public async Task<MemberDto> SaveMemberAsync(AddMemberRequest request)
+        {
+
+            request.LastName = request.LastName.NormalizeToLowerCase();
+
+            return await _membersRepository.SaveMemberAsync(request); 
         }
 
     }
