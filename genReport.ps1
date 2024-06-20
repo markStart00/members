@@ -11,15 +11,28 @@ $memberData = @()
 foreach ($member in $response) {
 
 	$customObject = [PSCustomObject] @{
-		id = $member.id
-		lastname = $member.lastName
+
+		Id = $member.id
+
+	       	HouseOfLordsId = $member.houseOfLordsId
+	       	NameFullTitle = $member.nameFullTitle
+	       	Gender = $member.gender
+	       	PartyId = $member.partyId
+		MembershipStatusIsActive = $member.membershipStatusIsActive
+		MembershipStartDate = $member.membershipStartDate
+		MembershipEndDate = $member.membershipEndDate
+		MembershipEndReason = $member.membershipEndReason
+		MemberFrom = $member.membershipFrom
+		ImageUrl = $member.imageUrl
+       	
 	}
 
 	$memberData += $customObject
 
 }
 
-$htmlTable = $memberData | ConvertTo-Html -Property id, lastname -Fragment
+$htmlTable = $memberData | ConvertTo-Html -Property Id, HouseOfLordsId, NameFullTitle, Gender, PartyId, MembershipStatusIsActive, MembershipStartDate, MembershipEndDate, MembershipEndReason, MemberFrom, ImageUrl -Fragment
+
 $totalCount = $memberData.Count
 
 $htmlFile = @"

@@ -4,13 +4,12 @@ using members.Domain.Dtos;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using members.Domain.Requests;
 using members.Application.Exceptions;
 using members.Database.Domain.Entities;
 
 namespace members.Infrastructure.Repositories
 {
-    public class MembersRepository : IMembersRepository 
+    public class MembersRepository : IMembersRepository
     {
         private readonly MembersDbContext _membersDbContext;
         private readonly IMapper _mapper;
@@ -24,24 +23,28 @@ namespace members.Infrastructure.Repositories
         public async Task<IEnumerable<MemberDto>> GetAllMembersAsync()
         {
             return await _membersDbContext.Members
-            //.Include(o => o.OtherTable)
-            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-            .ToListAsync();
+                .Include(m => m.Party)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
 
-        public async Task<MemberDto> SaveMemberAsync(AddMemberRequest request)
+        public async Task<bool> PartyExistsInDbAsync(int? partyId)
         {
-            // check for uniqueness but need more fields than just lastname
+            if (partyId == null) return false;
 
-            //if (await _membersDbContext.Members.AnyAsync(m => m.LastName == request.LastName))
-            //{
-            //    throw new MemberExistsException();
-            //}
+            return await _membersDbContext.Parties.AnyAsync(m => m.PartyId == partyId);
+        }
 
-            // the db generate id is updated in the Member model by ef when saveChangesAsync()
+        public async Task<MemberDto> SaveMemberAsync(Member member)
+        {
+
+            if (await _membersDbContext.Members.AnyAsync(m => m.HouseOfLordsId == member.HouseOfLordsId))
+            {
+                throw new MemberExistsException();
+            }
+
+            // the db generates id and ef updates the Member model id when saveChangesAsync()
             // there is no need to get the newly added memeber from the db
-
-            Member member = _mapper.Map<Member>(request);
 
             _membersDbContext.Members.Add(member);
 

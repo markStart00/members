@@ -14,10 +14,9 @@ $skip = 0
 $take = 20
 $totalRetrieved = 0
 $iteration = 0
-$testLimit = 1
+$limit = 1
 
 do {
-
 	$url = $houseOfUrl + "?skip=" + $skip + "&take=" + $take
 	Write-Output "		Fetching: $url 	"
 	$response = Invoke-RestMethod -Uri $url -Method Get
@@ -31,81 +30,52 @@ do {
 	$totalRetrieved += $members.Count
 	$skip += $take
 	$iteration += 1
-	Write-Output "		Retrieved: $totalRetrieved 	"
 
-} while ($members.Count -eq $take -and $iteration -lt $testLimit)
+} while ($members.Count -gt 0 -and $iteration -lt $limit)
 
 Write-Output ""
 Write-Output "		Total Retrieved: $totalRetrieved 	"
+Write-Output "		Total Iterations: $iteration"
+Write-Output ""
+Write-Output "		Saving ...		"
 Write-Output ""
 
 $allMembers | ForEach-Object { 
 
 	$member = $_.value
-	# Write-Output $member
-	
-	Write-Output "latest party id, name, color, is independent, memberFromId"
-	Write-Output $member.latestParty.id
-	Write-Output $member.latestParty.name
-	Write-Output $member.latestParty.backgroundColour
-	Write-Output $member.latestParty.isIndependentParty
-	Write-Output $member.latestParty.membershipFromId
-	Write-Output "main, spirtual ?"
-	Write-Output $member.latestParty.isLordsMainParty
-	Write-Output $member.latestParty.isLordsSpiritualParty
-
-	Write-Output ""
-
 	
 	$putData = @{
-
-	       	# LastName = $member.nameListAs.Split(',')[0].Trim()
-		
+	       	HouseOfLordsId = $member.id
 	       	NameFullTitle = $member.nameFullTitle
-	       	HouseId = $member.id
-	       	LatestPartyId = $member.latestParty.id
 	       	Gender = $member.gender
-
-		ImageUrl = $member.thumbnailUrl
-
-		MemberFrom = $member.latestHouseMembership.membershipFrom
+	       	PartyId = $member.latestParty.id
+		MembershipStatusIsActive = $member.latestHouseMembership.membershipStatus.statusIsActive
 		MembershipStartDate = $member.latestHouseMembership.membershipStartDate
 		MembershipEndDate = $member.latestHouseMembership.membershipEndDate
-		MembershipStatusIsActive = $member.latestHouseMembership.membershipStatus.statusIsActive
 		MembershipEndReason = $member.latestHouseMembership.membershipEndReason
-		
+		MemberFrom = $member.latestHouseMembership.membershipFrom
+		ImageUrl = $member.thumbnailUrl
        	}	       
+
        	$jsonData = $putData | ConvertTo-Json
 
-	Write-Output $jsonData
+       	try {
+		$response = Invoke-RestMethod -Uri $microserviceUrl -Method Put -Headers @{ 
+			"Content-Type" = "application/json" } -Body $jsonData
+		$responseId = $response.id;
+		$responseName = $response.nameFullTitle;
+		Write-Output "		MicroService Saved Member: $responseId, 	$responseName	"
+       	}
+	catch {
+		Write-Output "		$_	"
+	       	Write-Output "		$member"
+		Write-Output ""
 
-#       	try {
-#		$response = Invoke-RestMethod -Uri $microserviceUrl -Method Put -Headers @{ 
-#			"Content-Type" = "application/json" } -Body $jsonData
-#		Write-Output "		MicroService Saved : $response"
-#       	}
-#	catch {
-#		Write-Output ""
-#		Write-Output "		Error: $_"
-#		Write-Output ""
-#	}
+	}
 
 }
 
 Write-Output ""
-Write-Output "		___		"
+Write-Output "		- - Program Complete - -	"
 Write-Output ""
 
-#	$_.value | Select-Object id, 
-#  nameListAs, 
-#  latestParty.name, 
-#  gender, 
-#  latestHouseMembership.membershipFrom,
-#  latestHouseMembership.membershipStartDate,
-#  latestHouseMembership.membershipEndDate,
-#  latestHouseMembership.membershipEndReason,
-#  latestHouseMembership.membershipEndReasonNotes,
-#  latestHouseMembership.membershipStatus.statusIsActive,
-#  latestHouseMembership.membershipStatus.statusDescription
-  
-#} 

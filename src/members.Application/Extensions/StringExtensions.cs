@@ -2,9 +2,9 @@
 {
     public static class StringExtensions
     {
-        public static string NormalizeToLowerCase(this string value)
+        public static string? NormalizeToLowerCase(this string? value)
         {
-            return value.ToLower();
+            return value?.ToLower();
         }
 
     }

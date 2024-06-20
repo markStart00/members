@@ -1,11 +1,15 @@
 
 
 - - ef core - - - - - - - - - - - - -
-# initial ef command
+# initial ef command / create migration
 dotnet ef migrations add InitialCreate --project src\members.Database.Infrastructure --startup-project src\members.Api
+
+# undo migration that added but did not update successfully
+dotnet ef migrations remove --project .\src\members.Database.Infrastructure\ --startup-project .\src\members.Api\
 
 # apply migration
 dotnet ef database update --project src/members.Database.Infrastructure --startup-project src/members.Api
+
 
 
 - - dotnet - - - - - - - - - - - - -
@@ -26,12 +30,18 @@ go
 select name from sys.tables; 
 go
 
+# run stored procedure ( in dir file is in or path )
+SQLCMD -S localhost\SQLEXPRESS -d membersdb -i .\AddParty.sql
+
+# run seed data script after stored procedure ( in dir file is in or path )
+SQLCMD -S localhost\SQLEXPRESS -d membersdb -i ..\SeedData\SeedPartiesData.sql
+
 
 - - pwsh Requests - - - - - - - - - - - - -
 Invoke-RestMethod -Uri "https://localhost:7106/all-members" -Method Get
 
 Invoke-RestMethod -Uri "https://localhost:7106/health" -Method Get
 
-Invoke-RestMethod -Uri "https://localhost:7106/add-member" -Method Put -Headers @{ "Content-Type" = "application/json" } -Body (ConvertTo-Json @{ LastName = "LastName"; } )
+Invoke-RestMethod -Uri "https://localhost:7106/add-member" -Method Put -Headers @{ "Content-Type" = "application/json" } -Body (ConvertTo-Json @{ HouseOfLordsId = 9999; NameFullTitle = "Test"; Gender = "M"; PartyId = 9999; MembershipStatusIsActive = $true; MembershipStartDate = "2019-12-12T00:00:00"; MembershipEndDate = "2024-05-30T00:00:00"; MembershipEndReason = "Test"; MemberFrom = "Test"; ImageUrl = "Test"; }) 
 
 
