@@ -17,6 +17,11 @@ namespace members.Api.Extensions
                 return Results.Ok( await membersService.GetAllMembersAsync());
             });
 
+            app.MapGet("/current-members", async (IMembersService membersService) =>
+            {
+                return Results.Ok(await membersService.GetCurrentMembersAsync());
+            });
+
             app.MapPut("add-member", async (
                 [FromBody] AddMemberRequest request,
                 IValidator<AddMemberRequest> validator,

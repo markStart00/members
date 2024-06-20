@@ -22,6 +22,11 @@ namespace members.Application.Services
             return await _membersRepository.GetAllMembersAsync();
         }
 
+        public async Task<IEnumerable<MemberDto>> GetCurrentMembersAsync()
+        {
+            return await _membersRepository.GetCurrentMembersAsync();
+        }
+
         public async Task<MemberDto> SaveMemberAsync(AddMemberRequest request)
         {
 

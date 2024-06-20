@@ -3,10 +3,16 @@ Write-Output ""
 Write-Output "		Generating ...		"
 Write-Output ""
 
-$microserviceUrl = "https://localhost:7106/all-members"
+$microserviceUrl = "https://localhost:7106/current-members"
 $response = Invoke-RestMethod -Uri $microserviceUrl -Method Get
 
+$iteration = 0
 $memberData = @()
+$htmlImageSelection = ""
+$htmlColours = ""
+$sampleSize = 64
+$maleCount = 0
+$femaleCount = 0
 
 foreach ($member in $response) {
 
@@ -22,34 +28,101 @@ foreach ($member in $response) {
 		MembershipStartDate = $member.membershipStartDate
 		MembershipEndDate = $member.membershipEndDate
 		MembershipEndReason = $member.membershipEndReason
-		MemberFrom = $member.membershipFrom
+		MemberFrom = $member.memberFrom
 		ImageUrl = $member.imageUrl
+		PartyName = $member.party.name
+		PartyColour = $member.party.colour
        	
 	}
 
+	if ($member.gender -eq 'm') {
+		$maleCount ++
+	}
+
+	if ($member.gender -eq 'f') {
+		$femaleCount ++
+	}
+
+	if ($iteration % $sampleSize -eq 0) {
+		$mrBurnsImagePath = "./mrBurns.png"
+		$imageUrl = $member.imageUrl
+		$htmlImageSelection += "<img src='$mrBurnsImagePath' style=' 
+			width:100px; 
+			height=100px; 
+			display:inline-block; 
+			margin: 5px; ' />"
+	}
+
+	if($member.party.colour) {
+		$colour = $member.party.colour
+		$htmlColours += "<div style=' 
+			width:10px; 
+			height:10px; 
+			background-color: #$colour; 
+			border: 1px solid white; 
+			margin: 0px; 
+			display: inline-block; '> </div>"
+	}
+
 	$memberData += $customObject
+	$iteration ++
 
 }
 
-$htmlTable = $memberData | ConvertTo-Html -Property Id, HouseOfLordsId, NameFullTitle, Gender, PartyId, MembershipStatusIsActive, MembershipStartDate, MembershipEndDate, MembershipEndReason, MemberFrom, ImageUrl -Fragment
 
-$totalCount = $memberData.Count
+$totalMembers = $memberData.Count
+$totalMembers = $totalMembers
+$malePercent = [math]::round(( $maleCount / $totalMembers ) * 100)
+$femalePercent = [math]::round(( $femaleCount / $totalMembers ) * 100)
+
+$htmlSummaryTable = @"
+<table>
+	<tr><td>Total Members</td><td>$totalMembers</td></tr>
+	<tr><td>Female</td><td>$femaleCount</td><td>$femalePercent %</td></tr>
+	<tr><td>Male</td><td>$maleCount</td><td>$malePercent %</td></tr>
+</table>
+"@
+
+$htmlMembersTable = $memberData | ConvertTo-Html -Property HouseOfLordsId, NameFullTitle, Gender, MembershipStartDate, MemberFrom, ImageUrl, PartyName, PartyColour -Fragment
 
 $htmlFile = @"
-	<!DOCTYPE html>
-	<html>
+<!DOCTYPE html>
+<html>
 	<head>
 		<title>Report</title>
+		<style>
+			* {
+				padding: 5px;
+				margin: 5px;
+			}
+			.images {
+				display: flex; 
+				flex-wrap: wrap;
+			}
+		</style>
 	</head>
 	<body>
 		<h2>Report</h2>
-		<p>Total Members: $totalCount</p>
-		$htmlTable
+		$htmlSummaryTable
+		<div class="images">
+			$htmlImageSelection
+		</div>
+
+		<div class="images">
+			$htmlColours
+		</div>
+
+		$htmlMembersTable
 	</body>
-	</html>
+</html>
 "@
 
 
 $htmlFile | Out-File -FilePath "./report.html"
+
+
+
+
+
 
 

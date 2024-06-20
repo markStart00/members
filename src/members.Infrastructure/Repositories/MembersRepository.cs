@@ -28,6 +28,15 @@ namespace members.Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<MemberDto>> GetCurrentMembersAsync()
+        {
+            return await _membersDbContext.Members
+                .Where(m => m.MembershipEndDate == null)
+                .Include(m => m.Party)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
+
         public async Task<bool> PartyExistsInDbAsync(int? partyId)
         {
             if (partyId == null) return false;

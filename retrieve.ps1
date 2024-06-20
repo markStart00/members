@@ -1,6 +1,7 @@
 
 # https://members-api.parliament.uk/api/Members/Search?skip=4808&take=20	last	4808
 #  both main and spirutal lord 4741 ?
+#  invalid lord ? 2184, 3826, 3802 - cant parse to AddMemberRequest no MemberFrom ?  end data before start date ?
 
 Write-Output ""
 Write-Output "		Retrieving ...		"
@@ -14,7 +15,7 @@ $skip = 0
 $take = 20
 $totalRetrieved = 0
 $iteration = 0
-$limit = 1
+$limit = 300
 
 do {
 	$url = $houseOfUrl + "?skip=" + $skip + "&take=" + $take
