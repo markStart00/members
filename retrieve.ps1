@@ -15,7 +15,8 @@ $skip = 0
 $take = 20
 $totalRetrieved = 0
 $iteration = 0
-$limit = 300
+$limit = 15
+#$limit = 300
 
 do {
 	$url = $houseOfUrl + "?skip=" + $skip + "&take=" + $take
@@ -40,6 +41,9 @@ Write-Output "		Total Iterations: $iteration"
 Write-Output ""
 Write-Output "		Saving ...		"
 Write-Output ""
+
+$savedMembers = 0
+$badRequests = 0
 
 $allMembers | ForEach-Object { 
 
@@ -66,17 +70,26 @@ $allMembers | ForEach-Object {
 		$responseId = $response.id;
 		$responseName = $response.nameFullTitle;
 		Write-Output "		MicroService Saved Member: $responseId, 	$responseName	"
+		$savedMembers ++
        	}
 	catch {
 		Write-Output "		$_	"
 	       	Write-Output "		$member"
 		Write-Output ""
-
+		$badRequests ++
 	}
 
 }
 
+
+Write-Output ""
+Write-Output ""
+Write-Output "		Members Saved: $savedMembers	"
+Write-Output "		Bad Requests: $badRequests	"
+Write-Output ""
 Write-Output ""
 Write-Output "		- - Program Complete - -	"
+Write-Output ""
+Write-Output ""
 Write-Output ""
 

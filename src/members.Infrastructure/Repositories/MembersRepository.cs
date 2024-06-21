@@ -33,6 +33,7 @@ namespace members.Infrastructure.Repositories
             return await _membersDbContext.Members
                 .Where(m => m.MembershipEndDate == null)
                 .Include(m => m.Party)
+                .OrderBy(m => m.Party != null ? m.Party.Name : null)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }

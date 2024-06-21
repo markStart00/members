@@ -1,5 +1,6 @@
 
 Write-Output ""
+Write-Output ""
 Write-Output "		Generating ...		"
 Write-Output ""
 
@@ -10,9 +11,11 @@ $iteration = 0
 $memberData = @()
 $htmlImageSelection = ""
 $htmlColours = ""
-$sampleSize = 64
+$sampleSize = 25
+#$sampleSize =
 $maleCount = 0
 $femaleCount = 0
+$imageCount = 0
 
 foreach ($member in $response) {
 
@@ -44,13 +47,24 @@ foreach ($member in $response) {
 	}
 
 	if ($iteration % $sampleSize -eq 0) {
-		$mrBurnsImagePath = "./mrBurns.png"
+
 		$imageUrl = $member.imageUrl
-		$htmlImageSelection += "<img src='$mrBurnsImagePath' style=' 
+
+		if ($imageCount -eq 7) {
+			$imageUrl = "./mrBurns.png"
+		}
+
+		if ($imageCount -eq 20) {
+			$imageUrl = "./darth.png"
+		}
+
+		$htmlImageSelection += "<img src='$imageUrl' class='portrait' style=' 
 			width:100px; 
 			height=100px; 
 			display:inline-block; 
 			margin: 5px; ' />"
+
+		$imageCount ++
 	}
 
 	if($member.party.colour) {
@@ -99,6 +113,8 @@ $htmlFile = @"
 				display: flex; 
 				flex-wrap: wrap;
 			}
+			.portrait{
+			}
 		</style>
 	</head>
 	<body>
@@ -117,11 +133,16 @@ $htmlFile = @"
 </html>
 "@
 
+$filePath = "./report.html"
 
-$htmlFile | Out-File -FilePath "./report.html"
+$htmlFile | Out-File -FilePath $filePath
 
 
-
+Write-Output ""
+Write-Output "		Report Saved: $filePath		"
+Write-Output ""
+Write-Output ""
+Write-Output ""
 
 
 
