@@ -1,4 +1,7 @@
 
+- - docker - - - - - - - - - - - - -
+docker-compose up --build
+
 
 - - ef core - - - - - - - - - - - - -
 # initial ef command / create migration

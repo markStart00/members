@@ -1,0 +1,20 @@
+i have a working dotnet c sharp microservice that connexts to a sqlexpress database with api end points that get and post memebers i want to eventually run this in azure in kubernetes ideally set up deployed an monitored via the azure cli ,i can run the project locally with visual studio running the microservice and sqlexpress running localy , i thought i could run the project locally in kubernets one pod for the microservice ? and another for sqlexpres ? and the move that kubernetes local set up to azure ? to arrive at my main goal of deploying my microservice + sqlexpress servicer in kubernetes on azure hopefully via the cli but ideally clie + gui at the same time
+  
+
+ microsoft-account == connected with == SatellitesAndRainforests
+
+ development connection string ==     
+"MembersConnectionString": "Server=localhost\\SQLEXPRESS;Database=MembersDb;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True"
+
+
+ 1	dockerize 	microservice + sqlexpress db
+
+ 2	kubernetes manifest
+
+ 3	minikube
+
+ 4	Azure AKS
+
+ 5	monitor Azure Cli + Portal
+
+ 
