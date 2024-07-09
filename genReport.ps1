@@ -4,7 +4,7 @@ Write-Output ""
 Write-Output "		Generating ...		"
 Write-Output ""
 
-$microserviceUrl = "https://localhost:7106/current-members"
+$microserviceUrl = "http://localhost:5053/current-members"
 $response = Invoke-RestMethod -Uri $microserviceUrl -Method Get
 
 $iteration = 0

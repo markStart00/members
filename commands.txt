@@ -13,9 +13,10 @@ dotnet ef migrations remove --project .\src\members.Database.Infrastructure\ --s
 dotnet ef database update --project src/members.Database.Infrastructure --startup-project src/members.Api
 
 - - dotnet - - - - - - - - - - - - -
- dotnet build
  dotnet clean
  dotnet restore # like npm i -- for nuget files
+ dotnet build
+ dotnet run --project .\src\members.Api\members.Api.csproj
 
 - - SQLCMD - - - - - - - - - - - - -
  # connect to sql
@@ -37,9 +38,9 @@ SQLCMD -S localhost\SQLEXPRESS -d membersdb -i ..\SeedData\SeedPartiesData.sql
 
 - - pwsh Requests - - - - - - - - - - - - -
 
-Invoke-RestMethod -Uri "https://localhost:7106/all-members" -Method Get
-Invoke-RestMethod -Uri "https://localhost:7106/current-members" -Method Get
-Invoke-RestMethod -Uri "https://localhost:7106/health" -Method Get
+Invoke-RestMethod -Uri "http://localhost:5053/all-members" -Method Get
+Invoke-RestMethod -Uri "http://localhost:5053/current-members" -Method Get
+Invoke-RestMethod -Uri "http://localhost:5053/health" -Method Get
 
 Invoke-RestMethod -Uri "https://localhost:7106/add-member" -Method Put -Headers @{ "Content-Type" = "application/json" } -Body (ConvertTo-Json @{ HouseOfLordsId = 9999; NameFullTitle = "Test"; Gender = "M"; PartyId = 9999; MembershipStatusIsActive = $true; MembershipStartDate = "2019-12-12T00:00:00"; MembershipEndDate = "2024-05-30T00:00:00"; MembershipEndReason = "Test"; MemberFrom = "Test"; ImageUrl = "Test"; }) 
 

@@ -8,7 +8,7 @@ Write-Output "		Retrieving ...		"
 Write-Output ""
 
 $houseOfUrl = "https://members-api.parliament.uk/api/Members/Search"
-$microserviceUrl = "https://localhost:7106/add-member" 
+$microserviceUrl = "http://localhost:5053/add-member" 
 
 $allMembers = @()
 $skip = 0
