@@ -15,7 +15,7 @@ $skip = 0
 $take = 20
 $totalRetrieved = 0
 $iteration = 0
-$limit = 15
+$limit = 3
 #$limit = 300
 
 do {

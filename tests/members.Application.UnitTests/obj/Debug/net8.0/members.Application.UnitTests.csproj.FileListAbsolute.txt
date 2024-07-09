@@ -1,0 +1,7 @@
+C:\Users\witch\members\tests\members.Application.UnitTests\bin\Debug\net8.0\.msCoverageSourceRootsMapping_members.Application.UnitTests
+C:\Users\witch\members\tests\members.Application.UnitTests\obj\Debug\net8.0\members.Application.UnitTests.csproj.AssemblyReference.cache
+C:\Users\witch\members\tests\members.Application.UnitTests\obj\Debug\net8.0\members.Application.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\witch\members\tests\members.Application.UnitTests\obj\Debug\net8.0\members.Application.UnitTests.AssemblyInfoInputs.cache
+C:\Users\witch\members\tests\members.Application.UnitTests\obj\Debug\net8.0\members.Application.UnitTests.AssemblyInfo.cs
+C:\Users\witch\members\tests\members.Application.UnitTests\obj\Debug\net8.0\members.Application.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\witch\members\tests\members.Application.UnitTests\obj\Debug\net8.0\members.Application.UnitTests.sourcelink.json

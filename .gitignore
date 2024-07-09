@@ -141,9 +141,6 @@ _NCrunch_*
 *.pyd
 __pycache__/
 
-# Migrations
-[Mm]igrations/
-
 # CMake
 CMakeLists.txt.user
 
