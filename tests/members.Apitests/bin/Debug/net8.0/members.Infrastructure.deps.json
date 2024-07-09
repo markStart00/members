@@ -83,6 +83,14 @@
           }
         }
       },
+      "FluentValidation/11.9.2": {
+        "runtime": {
+          "lib/net8.0/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.9.2.0"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "runtime": {
           "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
@@ -597,6 +605,7 @@
       "members.Application/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
+          "FluentValidation": "11.9.2",
           "members.Database.Domain": "1.0.0",
           "members.Domain": "1.0.0"
         },
@@ -667,6 +676,13 @@
       "sha512": "sha512-hh32G5H5ShaqGrMTcEE59K0eZ2FwuPw+uIA47eDrzF5+ZKUetd/dBXw5HYT4/hBDSeOMGzeMRnAelnERoQiPxg==",
       "path": "entityframeworkcore.exceptions.sqlserver/8.1.2",
       "hashPath": "entityframeworkcore.exceptions.sqlserver.8.1.2.nupkg.sha512"
+    },
+    "FluentValidation/11.9.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XeHp9LvFvu1fsQ/NvDCymV02GOCB1nz7ZUhfpI3uMhCcHTkV1K5bMkv+Nc/kuNYyAsX5+5bcmUanIEMd5QN+Eg==",
+      "path": "fluentvalidation/11.9.2",
+      "hashPath": "fluentvalidation.11.9.2.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",
