@@ -7,6 +7,8 @@ services:
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
+    volumes:
+      - ./init-scripts:/init-scripts
 
   microservice:
     build:
@@ -15,7 +17,15 @@ services:
     depends_on:
       - sqlexpress
     environment:
-      ConnectionStrings__DefaultConnection: "Server=sqlexpress;Database=MembersDb;User Id=sa;Password=password;MultipleActiveResultSets=True;TrustServerCertificate=True"
+      ConnectionStrings__MembersConnectionString: "Server=sqlexpress;Database=MembersDb;User Id=sa;Password=password;MultipleActiveResultSets=True;TrustServerCertificate=True"
     ports:
       - "80:80"
+
+  init:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      - sqlexpress
+    volumes:
+      - ./init-scripts:/init-scripts
+    entrypoint: /bin/sh -c "sleep 15 && /init-scripts/init-db.sh"
 
