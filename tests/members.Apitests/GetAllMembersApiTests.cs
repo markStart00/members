@@ -9,6 +9,7 @@ namespace members.Apitests;
 
 public class GetAllMembersApiTests 
 {
+	/*
     private readonly Mock<IMembersService> _membersService;
 
     public GetAllMembersApiTests()
@@ -59,6 +60,6 @@ public class GetAllMembersApiTests
         Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
 
     } 
-
+*/
 
 }

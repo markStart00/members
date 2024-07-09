@@ -6,6 +6,8 @@ i have a working dotnet c sharp microservice that connexts to a sqlexpress datab
  development connection string ==     
 "MembersConnectionString": "Server=localhost\\SQLEXPRESS;Database=MembersDb;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True"
 
+ docker connection string == 
+    "MembersConnectionString": "Server=sqlexpress;Database=MembersDb;User Id=sa;Password=password;MultipleActiveResultSets=True;TrustServerCertificate=True"
 
  1	dockerize 	microservice + sqlexpress db
 

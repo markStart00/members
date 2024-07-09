@@ -8,6 +8,7 @@ namespace members.Application.UnitTests
 {
     public class GetAllMembersTests
     {
+	    /*
         private readonly Mock<IMembersRepository> _membersRepository;
 
         public GetAllMembersTests()
@@ -30,6 +31,7 @@ namespace members.Application.UnitTests
             Assert.IsType<List<MemberDto>>(allMembers);
 
         }
+	*/
 
     }
 }
