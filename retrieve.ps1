@@ -15,8 +15,8 @@ $skip = 0
 $take = 20
 $totalRetrieved = 0
 $iteration = 0
-$limit = 3
-#$limit = 300
+#$limit = 3
+$limit = 300
 
 do {
 	$url = $houseOfUrl + "?skip=" + $skip + "&take=" + $take
