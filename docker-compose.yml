@@ -13,13 +13,13 @@ services:
   microservice:
     build:
       context: .
-      dockerfile: src/members.Api/Dockerfile
+      dockerfile: ./Dockerfile
     depends_on:
       - sqlexpress
     environment:
       ConnectionStrings__MembersConnectionString: "Server=sqlexpress;Database=MembersDb;User Id=sa;Password=password;MultipleActiveResultSets=True;TrustServerCertificate=True"
     ports:
-      - "80:80"
+      - "8080:80"
 
   init:
     image: mcr.microsoft.com/mssql-tools

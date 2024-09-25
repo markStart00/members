@@ -1,4 +1,9 @@
 
+# ignore certificate files
+*.crt
+*.key
+*.pfx
+
 */obj/
 */bin/
 *~

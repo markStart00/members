@@ -16,3 +16,4 @@ EXEC AddParty @PartyId = 16, @Name = 'liberal', @Colour = 'C0C0C0';
 EXEC AddParty @PartyId = 10, @Name = 'independent labour', @Colour = 'FF0000';
 EXEC AddParty @PartyId = 31, @Name = 'social democratic & labour party', @Colour = 'CCFFCC';
 EXEC AddParty @PartyId = 9, @Name = 'independent conservative', @Colour = '0000FF';
+
